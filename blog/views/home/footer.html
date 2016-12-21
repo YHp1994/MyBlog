@@ -1,0 +1,32 @@
+<div class="col-md-3">
+    <div class="panel panel-default hot">
+        <div class="panel-heading">
+            热门文章
+        </div>
+        <div class="panel-body">
+            <ul class="list-unstyled">
+                <% for (var i = 0; i < hot.length; i++ ) { %>
+                <li><span class="label
+								<% if (i < 3) { %>
+									label-danger
+								<% } else { %>
+									label-default
+								<% } %>
+							">
+								<%= i+1 %>
+							</span> <a href="/posts?id=<%= hot[i]._id %>"> <%= hot[i].title %></a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="footer container-fluid text-center">
+
+    <p>版权所有，保留一切权利！ 转载内容版权归作者及来源网站所有，原创内容转载请注明来源。</p>
+    <p>Copyright © 2016-2017 clown, All Rights Reserved.</p>
+</div>
+
+</body>
+</html>

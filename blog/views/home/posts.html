@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>牛的博客</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<style>
+		body {padding-top: 50px; background: #f2f2f2;}
+		.main {margin-top: 20px;}
+		.main-left {background: #fff; padding: 20px;}
+		.media-left img {width: 280px; height: 180px;}
+		.media {margin-top: 20px; border-bottom: 1px dotted #ddd; padding-bottom: 20px;}
+		.media-body {color: #666;}
+		.media-body ul {margin: 10px 0;}
+		.media-body h2 {font-size: 24px; font-family: "微软雅黑"}
+		.hot li {line-height: 26px;}
+		.footer {background: #222; color: #999; padding-top: 20px; margin-top: 20px; font-size: 12px;}
+
+		/*自己编写媒体查询*/
+		@media screen and (max-width: 768px) {
+			.media-left, .media-body {display: block!important; margin-top: 20px;}
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="" class="navbar-brand">我的博客</a>
+				<button class="navbar-toggle" data-target="#menu" data-toggle="collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div id="menu" class="collapse navbar-collapse">
+				<ul class="navbar-nav nav">
+					<ul class="navbar-nav nav">
+						<% for(var i = 0;i<cats.length;i++){ %>
+						<!--<li class="active"><a href="">首页</a></li>-->
+						<!--<li><a href="">HTML</a></li>-->
+						<!--<li><a href="">CSS</a></li>-->
+						<!--<li><a href="">JavaScript</a></li>-->
+						<li><a href=""><%= cats[i].title%></a></li>
+						<% } %>
+					</ul>
+				</ul>
+				<form action="" class="navbar-form navbar-right">
+					<div class="input-group">
+						<input type="text" placeholder="输入关键字" class="form-control">
+						<span class="input-group-btn">
+							<button class="btn btn-primary">搜索</button>
+						</span>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</nav>
+
+	<div>
+		<img src="images/baner.jpg" alt="" class="img-responsive">
+	</div>
+
+	<div class="container main">
+		<div class="row">
+			<div class="col-md-9 main-left">
+				
+				<ol class="breadcrumb">
+					<li><a href="">首页</a></li>
+					<li><a href="">css</a></li>
+					<li><a href="">响应式Web设计</a></li>
+				</ol>
+
+				<div class="page-header">
+					<h1><%= data.title%></h1>
+					<p>Killer 发表于(<%= data.time%>) 本文标签： 浏览量：<%= data.count%>次
+					<a href=""><span class="glyphicon glyphicon-thumbs-up"></span> 喜欢</a> 
+					<a href=""><span class="glyphicon glyphicon-heart">收藏</a>
+					</p>
+				</div>
+				<script src="/js/markdown.min.js"></script>
+				<div id="content"><%= data.content%></div>
+				<script>
+					$("#content").html(markdown.toHTML($("#content").html()))
+				</script>
+				
+				<hr>
+				<h3>相关文章</h3>
+				<div class="row">
+					<div class="col-md-6">
+						<span class="glyphicon glyphicon-link"></span><a href=""> 响应式Web设计</a>
+					</div>
+					<div class="col-md-6">
+						<span class="glyphicon glyphicon-link"></span><a href=""> 响应式Web设计</a>
+					</div>
+					<div class="col-md-6">
+						<span class="glyphicon glyphicon-link"></span><a href=""> 响应式Web设计</a>
+					</div>
+					<div class="col-md-6">
+						<span class="glyphicon glyphicon-link"></span><a href=""> 响应式Web设计</a>
+					</div>
+					<div class="col-md-6">
+						<span class="glyphicon glyphicon-link"></span><a href=""> 响应式Web设计</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default hot">
+					<div class="panel-heading">
+						热门文章
+					</div>
+					<div class="panel-body">
+						<ul class="list-unstyled">
+							<ul class="list-unstyled">
+								<% for (var i = 0; i < hot.length; i++ ) { %>
+								<li><span class="label
+								<% if (i < 3) { %>
+									label-danger
+								<% } else { %>
+									label-default
+								<% } %>
+							">
+								<%= i+1 %>
+							</span> <a href="/posts?id=<%= hot[i]._id %>"> <%= hot[i].title %></a></li>
+								<% } %>
+							</ul>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer container-fluid text-center">
+
+		<p>版权所有，保留一切权利！ 转载内容版权归作者及来源网站所有，原创内容转载请注明来源。</p>
+<p>Copyright © 2016-2017 clown, All Rights Reserved.</p>
+	</div>
+
+</body>
+</html>
